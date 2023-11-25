@@ -1,7 +1,7 @@
-import * as dotenv from "dotenv";
-dotenv.config();
-
+import "dotenv/config";
 import express from 'express';
+
+const PORT = process.env.PORT ?? 3001;
 
 import routes from './routes';
 import dbConnection from './models/connection';
@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.use('/v1', routes)
 
-app.listen(3001, async () => {
+app.listen(PORT, async () => {
     await dbConnection.connect()
     console.log('Servidor aberto na porta 3001')
 })
